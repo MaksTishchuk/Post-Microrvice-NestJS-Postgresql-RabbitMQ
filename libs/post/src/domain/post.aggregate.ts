@@ -18,6 +18,7 @@ export class PostAggregate extends PostServices implements IPost {
   message: string
 
   @IsNumber()
+  @IsNotEmpty()
   authorId: number
 
   @IsBoolean()
