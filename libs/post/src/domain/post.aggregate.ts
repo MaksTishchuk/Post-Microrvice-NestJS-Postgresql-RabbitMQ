@@ -35,7 +35,6 @@ export class PostAggregate extends PostServices implements IPost {
     super()
   }
 
-  // Make our own constructor, because this class must be singleton
   static create(post: Partial<IPost>) {
     const _post =  new PostAggregate()
     Object.assign(_post, post)
