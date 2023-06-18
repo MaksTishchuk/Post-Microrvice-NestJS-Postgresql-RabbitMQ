@@ -2,6 +2,7 @@ import {IPost} from "@lib/post/domain/post.interface";
 import {PostServices} from "@lib/post/domain/services";
 import {IsBoolean, IsNotEmpty, IsNumber, IsString, validateSync} from "class-validator";
 import {Exclude} from "class-transformer";
+import {DomainError} from "@lib/errors";
 
 export class PostAggregate extends PostServices implements IPost {
 
@@ -40,7 +41,7 @@ export class PostAggregate extends PostServices implements IPost {
     _post.updatedAt = post?.id ? new Date().toISOString() : _post.updatedAt
     const errors = validateSync(_post, { whitelist: true })   // whitelist - только те поля, которые относятся к нашему классу
     if (!!errors.length) {
-      throw new Error('Post not valid')
+      throw new DomainError(errors, 'Post not valid')
     }
     return _post
   }
