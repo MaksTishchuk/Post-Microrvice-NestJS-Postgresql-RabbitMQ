@@ -20,13 +20,12 @@ const options = (): DataSourceOptions => {
     type: "postgres",
     url: configService.get<string>('DB_URL'),
     logging: configService.get('IS_PROD') === 'false',    // If IS_PROD - off logs
-    entities: ENTITIES,
+    entities: [
+      join(DIR_NAME, 'dist', 'libs', 'entities', '**', '*.entity.{ts,js}')
+    ],
+    migrations: [join(DIR_NAME, 'migrations', '**', '*migration.ts')],
     migrationsRun: true,     // check migrations on start project
     migrationsTableName: 'migrations'
-    // entities: [
-    //   join(DIR_NAME, 'dist', 'libs', 'entities', '**', '*.entity.{ts,js}')
-    // ],
-    // migrations: [join(DIR_NAME, 'migrations', '**', '*migration.ts')],
   }
 }
 

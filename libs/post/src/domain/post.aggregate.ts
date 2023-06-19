@@ -1,13 +1,14 @@
 import {IPost} from "@lib/post/domain/post.interface";
 import {PostServices} from "@lib/post/domain/services";
-import {IsBoolean, IsNotEmpty, IsNumber, IsString, validateSync} from "class-validator";
+import {IsBoolean, IsNotEmpty, IsString, validateSync} from "class-validator";
 import {Exclude} from "class-transformer";
 import {DomainError} from "@lib/errors";
+import * as uuid from 'uuid'
 
 export class PostAggregate extends PostServices implements IPost {
 
-  @IsNumber()
-  id: number
+  @IsString()
+  id: string = uuid.v4()
 
   @IsString()
   @IsNotEmpty()
@@ -17,9 +18,9 @@ export class PostAggregate extends PostServices implements IPost {
   @IsNotEmpty()
   message: string
 
-  @IsNumber()
+  @IsString()
   @IsNotEmpty()
-  authorId: number
+  authorId: string
 
   @IsBoolean()
   @Exclude()

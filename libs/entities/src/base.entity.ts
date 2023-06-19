@@ -1,9 +1,9 @@
-import {Column, PrimaryGeneratedColumn} from "typeorm";
+import {Column, PrimaryColumn} from "typeorm";
 
 export abstract class Base {
 
-  @PrimaryGeneratedColumn({comment: 'The unique identifier'})
-  id: number
+  @PrimaryColumn('uuid')
+  id: string
 
   @Column({name: 'created_at'})
   createdAt: string

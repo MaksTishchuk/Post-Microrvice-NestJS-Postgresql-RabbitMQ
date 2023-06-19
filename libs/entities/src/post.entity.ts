@@ -10,7 +10,7 @@ export class PostEntity extends Base {
   message: string
 
   @Column({name: 'author_id'})
-  authorId: number
+  authorId: string
 
   @Column({name: 'is_published'})
   isPublished: boolean

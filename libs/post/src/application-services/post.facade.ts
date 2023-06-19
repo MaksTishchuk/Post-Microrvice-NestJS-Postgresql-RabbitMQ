@@ -26,11 +26,11 @@ export class PostFacade {
   commands = {
     createPost: (post: CreatePostDto) => this.createPost(post),
     updatePost: (post: UpdatePostDto) => this.updatePost(post),
-    setPublished: (id: number) => this.setPublished(id),
-    deletePost: (id: number) => this.deletePost(id)
+    setPublished: (id: string) => this.setPublished(id),
+    deletePost: (id: string) => this.deletePost(id)
   }
   queries = {
-    getPost: (id: number) => this.getPost(id),
+    getPost: (id: string) => this.getPost(id),
     getAllPosts: (pagination: PaginationDto) => this.getAllPosts(pagination)
   }
   events = {}
@@ -43,15 +43,15 @@ export class PostFacade {
     return this.commandBus.execute<UpdatePostCommand, UpdatePostCommandHandler['execute']>(new UpdatePostCommand(post))
   }
 
-  private setPublished(id: number) {
+  private setPublished(id: string) {
     return this.commandBus.execute<SetPublishedCommand, SetPublishedCommandHandler['execute']>(new SetPublishedCommand(id))
   }
 
-  private deletePost(id: number) {
+  private deletePost(id: string) {
     return this.commandBus.execute<DeletePostCommand, DeletePostCommandHandler['execute']>(new DeletePostCommand(id))
   }
 
-  private getPost(id: number) {
+  private getPost(id: string) {
     return this.queryBus.execute<GetPostQuery, GetPostQueryHandler['execute']>(new GetPostQuery(id))
   }
 

@@ -1,11 +1,11 @@
 export interface IPost {
-  id: number
+  id: string
 
   title: string
 
   message: string
 
-  authorId: number
+  authorId: string
 
   isPublished: boolean
 

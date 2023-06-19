@@ -17,12 +17,11 @@ export class PostAdapter implements PostRepository {
 
   async save(post: IPost): Promise<PostAggregate> {
     // update or create
-
-    if (post?.id) {
-      const existsPost = await this.findOne(post.id)
-      if (!existsPost) {
-        throw new NotFoundException(`Post by id ${post.id} not found!`)
-      }
+    const existsPost = await this.postRepository.findOneBy({id: post.id}).catch(err => {
+      this.logger.error(err)
+      return null
+    })
+    if (existsPost) {
       const {id, ...toUpdate} = post
       await this.postRepository.update({id}, toUpdate)
       return this.findOne(post.id)
@@ -31,7 +30,7 @@ export class PostAdapter implements PostRepository {
     return PostAggregate.create(savedPost)
   }
 
-  async findOne(id: number): Promise<PostAggregate> {
+  async findOne(id: string): Promise<PostAggregate> {
     const existsPost = await this.postRepository.findOneBy({id}).catch(err => {
       this.logger.error(err)
       return null
@@ -66,7 +65,7 @@ export class PostAdapter implements PostRepository {
   }
 
 
-  async delete(id: number): Promise<boolean> {
+  async delete(id: string): Promise<boolean> {
     const result = await this.postRepository.delete({id}).catch(err => {
       this.logger.error(err)
       return false
