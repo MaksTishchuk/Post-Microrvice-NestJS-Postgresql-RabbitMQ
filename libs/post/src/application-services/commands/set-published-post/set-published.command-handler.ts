@@ -24,6 +24,7 @@ export class SetPublishedCommandHandler implements ICommandHandler<SetPublishedC
     }
     const postAggregate = PostAggregate.create(existsPost)
     await postAggregate.setPublished()
+    await postAggregate.plainToInstance()
     await this.postRepository.save(postAggregate)
     return postAggregate
   }

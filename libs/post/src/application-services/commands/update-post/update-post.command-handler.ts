@@ -24,6 +24,7 @@ export class UpdatePostCommandHandler implements ICommandHandler<UpdatePostComma
     }
     Object.assign(existsPost, post)
     const postAggregate = PostAggregate.create(existsPost)
+    await postAggregate.plainToInstance()
     await this.postRepository.save(postAggregate)
     return postAggregate
   }
