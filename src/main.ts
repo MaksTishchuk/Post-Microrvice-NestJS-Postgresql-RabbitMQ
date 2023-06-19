@@ -23,6 +23,7 @@ async function bootstrap() {
   await app.listen(PORT, () => {
     Logger.log(`Application has been started on PORT: ${PORT}`, 'Main')
     Logger.log(`Swagger documentation on: /documentation`, 'Main')
+    Logger.log(`GraphQL playground on: /graphql`, 'Main')
   })
 }
 bootstrap();

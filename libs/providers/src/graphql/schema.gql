@@ -2,6 +2,25 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreatePostInput {
+  message: String!
+  title: String!
+}
+
+type Mutation {
+  create_post(createPostInput: CreatePostInput!): PostResponse!
+  delete_post(id: String!): Boolean!
+  set_published_post(id: String!): PostResponse!
+  update_post(updatePostInput: UpdatePostInput!): PostResponse!
+}
+
+type PaginatedPosts {
+  count: Int!
+  limit: Int!
+  offset: Int!
+  posts: [PostResponse!]
+}
+
 type PostResponse {
   """Post author Id"""
   authorId: String!
@@ -24,4 +43,17 @@ type PostResponse {
 
 type Query {
   get_post(id: String!): PostResponse!
+  get_posts(
+    """Post limit by page"""
+    limit: Int! = 10
+
+    """Offset number"""
+    offset: Int! = 0
+  ): PaginatedPosts!
+}
+
+input UpdatePostInput {
+  id: ID!
+  message: String
+  title: String
 }
