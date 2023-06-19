@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { AuthService } from './auth.service';
 import {PassportModule} from "@nestjs/passport";
 import {JwtModule} from "@nestjs/jwt";
 import {jwtFactory} from "@lib/auth/config";
 import {GUARDS} from "@lib/auth/guards";
 import {STRATEGIES} from "@lib/auth/strategies";
+import {AuthService} from "@lib/auth/auth.service";
 
 @Module({
   imports: [
