@@ -1,0 +1,27 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type PostResponse {
+  """Post author Id"""
+  authorId: String!
+
+  """Post createdAt"""
+  createdAt: String!
+
+  """Post id"""
+  id: ID!
+
+  """Post message"""
+  message: String!
+
+  """Post title"""
+  title: String!
+
+  """Post updatedAt"""
+  updatedAt: String!
+}
+
+type Query {
+  get_post(id: String!): PostResponse!
+}
