@@ -3,12 +3,6 @@ import {ApiExtraModels, ApiOkResponse, ApiProperty, getSchemaPath} from "@nestjs
 import {applyDecorators, Type} from "@nestjs/common";
 
 export class ResponseWithPagination<T> extends PaginationDto {
-  @ApiProperty({description: 'Offset posts', type: 'number'})
-  offset: number
-
-  @ApiProperty({description: 'Limit posts', type: 'number'})
-  limit: number
-
   @ApiProperty({description: 'Posts count in database with isPublished = true', type: 'number'})
   count!: number
 
