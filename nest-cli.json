@@ -59,6 +59,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/auth/tsconfig.lib.json"
       }
+    },
+    "rabbit-amqp-contracts": {
+      "type": "library",
+      "root": "libs/rabbit-amqp-contracts",
+      "entryFile": "index",
+      "sourceRoot": "libs/rabbit-amqp-contracts/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/rabbit-amqp-contracts/tsconfig.lib.json"
+      }
     }
   }
 }

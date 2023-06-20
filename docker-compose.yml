@@ -30,6 +30,14 @@ services:
     networks:
       - postgres_post
 
+  rmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+
 networks:
   postgres_post:
     driver: bridge
