@@ -15,8 +15,9 @@ export namespace CreatePostContract {
       durable: true   // after restart messages in queues will not be lost
     }
   }
+
+  export type request = RabbitAmqpBaseRequest<CreatePostRequest>
+
+  export type response = RabbitAmqpBaseResponse<PostResponse>
 }
 
-export type request = RabbitAmqpBaseRequest<CreatePostRequest>
-
-export type response = RabbitAmqpBaseResponse<PostResponse>

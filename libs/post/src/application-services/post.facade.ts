@@ -36,26 +36,44 @@ export class PostFacade {
   events = {}
 
   private createPost(post: CreatePostDto) {
-    return this.commandBus.execute<CreatePostCommand, CreatePostCommandHandler['execute']>(new CreatePostCommand(post))
+    return this.commandBus.execute<
+      CreatePostCommand,
+      Awaited<ReturnType<CreatePostCommandHandler['execute']>>
+    >(new CreatePostCommand(post))
   }
 
   private updatePost(post: UpdatePostDto) {
-    return this.commandBus.execute<UpdatePostCommand, UpdatePostCommandHandler['execute']>(new UpdatePostCommand(post))
+    return this.commandBus.execute<
+      UpdatePostCommand,
+      Awaited<ReturnType<UpdatePostCommandHandler['execute']>>
+    >(new UpdatePostCommand(post))
   }
 
   private setPublished(id: string) {
-    return this.commandBus.execute<SetPublishedCommand, SetPublishedCommandHandler['execute']>(new SetPublishedCommand(id))
+    return this.commandBus.execute<
+      SetPublishedCommand,
+      Awaited<ReturnType<SetPublishedCommandHandler['execute']>>
+    >(new SetPublishedCommand(id))
   }
 
   private deletePost(id: string) {
-    return this.commandBus.execute<DeletePostCommand, DeletePostCommandHandler['execute']>(new DeletePostCommand(id))
+    return this.commandBus.execute<
+      DeletePostCommand,
+      Awaited<ReturnType<DeletePostCommandHandler['execute']>>
+    >(new DeletePostCommand(id))
   }
 
   private getPost(id: string) {
-    return this.queryBus.execute<GetPostQuery, GetPostQueryHandler['execute']>(new GetPostQuery(id))
+    return this.queryBus.execute<
+      GetPostQuery,
+      Awaited<ReturnType<GetPostQueryHandler['execute']>>
+    >(new GetPostQuery(id))
   }
 
   private getAllPosts(pagination: PaginationDto) {
-    return this.queryBus.execute<GetAllPostsQuery, GetAllPostsQueryHandler['execute']>(new GetAllPostsQuery(pagination))
+    return this.queryBus.execute<
+      GetAllPostsQuery,
+      Awaited<ReturnType<GetAllPostsQueryHandler['execute']>>
+    >(new GetAllPostsQuery(pagination))
   }
 }
