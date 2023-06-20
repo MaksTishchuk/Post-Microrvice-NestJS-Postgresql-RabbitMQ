@@ -2,7 +2,6 @@ import {Injectable, Logger} from '@nestjs/common';
 import {PostFacade} from "@lib/post/application-services";
 import {RabbitRPC} from "@golevelup/nestjs-rabbitmq";
 import {CreatePostContract} from "@amqp/rabbit-amqp-contracts";
-import {create} from "domain";
 
 @Injectable()
 export class ConsumerService {
@@ -22,13 +21,24 @@ export class ConsumerService {
       const createdPost = await this.postFacade.commands.createPost(post)
       return {
         ...requestMessage,
-        payload: createdPost
+        payload: {
+          ...createdPost
+        }
       }
     } catch (error) {
       this.logger.error(error)
-      return null
+      return {
+        ...requestMessage,
+        payload: null,
+        error: this.errorHandler(error)
+      }
     }
-
   }
 
+  private errorHandler(error: any) {
+    return {
+      code: error?.name || 'error',
+      message: error?.message || JSON.stringify(error)
+    }
+  }
 }
